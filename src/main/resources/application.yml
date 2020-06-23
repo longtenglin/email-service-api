@@ -1,0 +1,47 @@
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    #url: jdbc:mysql://localhost:3306/test001?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+
+    url: jdbc:mysql://localhost:3306/test001?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    username: root
+    #password: 123
+    password: root
+  mail:
+    # 邮件服务地址
+    host: smtp.qq.com
+    # 端口
+    port: 587
+    # 编码格式
+    default-encoding: utf-8
+    # 用户名
+    username: 474845394@qq.com
+    # 授权码
+    #  POP3/SMTP  hpzcfionhlebbjdd
+    #  IMAP/SMTP  wukvrwdtyarecagg
+    password: hpzcfionhlebbjdd
+    # 其它参数
+    properties:
+      mail:
+        smtp:
+          # 如果是用 SSL 方式，需要配置如下属性
+          starttls:
+            enable: true
+            required: true
+#          socketFactory:
+#            port: 587
+#            class: javax.net.ssl.SSLSocketFactory
+#            fallback: true
+
+mybatis-plus:
+  type-aliases-package: com.example.email.entity
+  mapper-locations: classpath:/mapper/*.xml
+
+uploadFile:
+  location: D:/propertymanagementimg/
+  resourceHandler: /upload/**
+#thymeleaf:
+#  prefix：classpath:/templates/:
+#  suffix:.html:
+#  cache：false:
