@@ -4,7 +4,7 @@ import com.example.email.entity.User;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class UserInfo {
+public class SessionUtils {
 
     public static void setUserInfo(HttpServletRequest request, User user){
         request.getSession().setAttribute("user", user);

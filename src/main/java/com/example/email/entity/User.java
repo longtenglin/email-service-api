@@ -35,6 +35,7 @@ public class User implements Serializable {
     @TableField("email")
     private String email;
 
+    @TableField(exist = false, select = false)
     private String code;
 
     public static long getSerialVersionUID() {

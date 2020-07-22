@@ -25,11 +25,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     @Override
     public String login(User user) {
         User userGet = userMapper.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()).eq("password",user.getPassword()));
-        if( userGet != null){
+        if( userGet == null){
             return "用户名或密码错误";
         } else {
             return "登录成功";
         }
+    }
 
+    @Override
+    public String register(User user) {
+        User userGet = userMapper.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()));
+        if( userGet == null){
+            userMapper.insert(user);
+            return "注册成功";
+        } else {
+            return "注册失败，用户已存在";
+        }
     }
 }

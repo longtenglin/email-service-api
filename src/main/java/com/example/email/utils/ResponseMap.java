@@ -11,15 +11,15 @@ public class ResponseMap {
 
     public static Map<String,Object> sendMessage(String msg){
         Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
+        map.put("resCode", 0);
         map.put("msg", msg);
-        map.put("data", null);
+        map.put("data", "");
         return map;
     }
 
     public static Map<String,Object> sendMessage(String msg, Object object){
         Map<String, Object> map = new HashMap<>();
-        map.put("code", 0);
+        map.put("resCode", 0);
         map.put("msg", msg);
         map.put("data", object);
         return map;

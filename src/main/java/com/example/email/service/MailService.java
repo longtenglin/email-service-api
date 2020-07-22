@@ -1,5 +1,6 @@
 package com.example.email.service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
 
 /**
@@ -17,7 +18,7 @@ public interface MailService {
      */
     void sendSimpleMailMessge(String to, String subject, String content);
 
-    /**
+     /**
      * 发送 HTML 邮件
      *
      * @param to      收件人
@@ -45,4 +46,6 @@ public interface MailService {
      * @param rscIdMap 需要替换的静态文件
      */
     void sendMimeMessge(String to, String subject, String content, Map<String, String> rscIdMap);
+
+    Map<String, Object> getMsg(HttpServletRequest request, java.lang.String mail);
 }

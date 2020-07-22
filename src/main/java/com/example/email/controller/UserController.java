@@ -4,14 +4,11 @@ package com.example.email.controller;
 import com.example.email.entity.User;
 import com.example.email.service.impl.UserServiceImpl;
 import com.example.email.utils.ResponseMap;
-import com.example.email.utils.UserInfo;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import com.example.email.utils.SessionUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -23,15 +20,27 @@ import java.util.Map;
  * @since 2020-06-23
  */
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api")
 public class UserController {
 
+    @Autowired(required = false)
     private UserServiceImpl userService;
 
     @RequestMapping(path = "/login")
     public Map<String,Object> login(HttpServletRequest request, @RequestBody User user){
-        if (user.getCode().equals(UserInfo.getVerifyCode(request))){
+        if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
             String msg = userService.login(user);
+            return ResponseMap.sendMessage(msg);
+        } else {
+            return ResponseMap.sendMessage("验证码错误");
+        }
+    }
+
+    @RequestMapping(path="/register", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> register(HttpServletRequest request, @RequestBody User user){
+        if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
+            String msg = userService.register(user);
             return ResponseMap.sendMessage(msg);
         } else {
             return ResponseMap.sendMessage("验证码错误");
