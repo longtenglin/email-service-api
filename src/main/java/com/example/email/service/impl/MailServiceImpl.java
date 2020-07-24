@@ -14,7 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.util.Map;
 
@@ -123,7 +125,6 @@ public class MailServiceImpl implements MailService {
                 "简历邮箱：<a href=\"mailto:474845394@qq.com\" rel=\"noopener\" target=\"_blank\">474845394@qq<wbr>.com</a> <br>" +
                 "</div>";
 
-        System.out.println(content);
         try {
             //true表示需要创建一个multipart message
             MimeMessageHelper helper = new MimeMessageHelper(message, true);
@@ -132,7 +133,10 @@ public class MailServiceImpl implements MailService {
             helper.setSubject("验证码");
             helper.setText(content, true);
             mailSender.send(message);
+            System.out.println("验证码准备向session中存储，saving in session");
             SessionUtils.setVerifyCode(request,stringBuilder);
+            System.out.println("验证码完成向session中存储，saved in session");
+            System.out.println("请求session中的数据：——————"+SessionUtils.getVerifyCode(request));
             return ResponseMap.sendMessage("验证码发送成功",stringBuilder);
         } catch (MessagingException e) {
             logger.error("发送MimeMessge时发生异常！", e);

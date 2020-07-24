@@ -1,7 +1,9 @@
 package com.example.email.utils;
 
 import com.example.email.entity.User;
+import org.springframework.boot.web.servlet.server.Session;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 
 public class SessionUtils {

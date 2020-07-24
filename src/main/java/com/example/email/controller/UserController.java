@@ -26,7 +26,7 @@ public class UserController {
     @Autowired(required = false)
     private UserServiceImpl userService;
 
-    @RequestMapping(path = "/login")
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
     public Map<String,Object> login(HttpServletRequest request, @RequestBody User user){
         if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
             String msg = userService.login(user);
@@ -39,6 +39,8 @@ public class UserController {
     @RequestMapping(path="/register", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> register(HttpServletRequest request, @RequestBody User user){
+        System.out.println("注册参数:____"+user);
+        System.out.println("获取session中的验证码---Get VerifyCode from session:________"+SessionUtils.getVerifyCode(request));
         if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
             String msg = userService.register(user);
             return ResponseMap.sendMessage(msg);
