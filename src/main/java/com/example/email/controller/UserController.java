@@ -45,7 +45,7 @@ public class UserController {
             String msg = userService.register(user);
             return ResponseMap.sendMessage(msg);
         } else {
-            return ResponseMap.sendMessage("验证码错误");
+            return ResponseMap.sendMessage(1001,"验证码错误");
         }
     }
 }

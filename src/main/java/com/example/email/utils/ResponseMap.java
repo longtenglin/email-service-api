@@ -16,7 +16,13 @@ public class ResponseMap {
         map.put("data", "");
         return map;
     }
-
+    public static Map<String,Object> sendMessage(Integer resCode, String msg){
+        Map<String, Object> map = new HashMap<>();
+        map.put("resCode", resCode);
+        map.put("msg", msg);
+        map.put("data", "");
+        return map;
+    }
     public static Map<String,Object> sendMessage(String msg, Object object){
         Map<String, Object> map = new HashMap<>();
         map.put("resCode", 0);

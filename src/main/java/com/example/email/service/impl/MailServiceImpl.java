@@ -3,8 +3,8 @@ package com.example.email.service.impl;
 import com.example.email.service.MailService;
 import com.example.email.utils.ResponseMap;
 import com.example.email.utils.SessionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.Cookie;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+
 import java.io.File;
 import java.util.Map;
 
@@ -24,9 +24,9 @@ import java.util.Map;
  * @author Mr.zhaon
  * @date 2020/06/23
  */
+@Slf4j
 @Service
 public class MailServiceImpl implements MailService {
-    private static final Logger logger = LoggerFactory.getLogger(MailServiceImpl.class);
 
     @Autowired
     private JavaMailSender mailSender;
@@ -43,7 +43,7 @@ public class MailServiceImpl implements MailService {
         try {
             mailSender.send(message);
         } catch (Exception e) {
-            logger.error("发送简单邮件时发生异常!", e);
+            log.error("发送简单邮件时发生异常!", e);
         }
     }
 
@@ -59,7 +59,7 @@ public class MailServiceImpl implements MailService {
             helper.setText(content, true);
             mailSender.send(message);
         } catch (MessagingException e) {
-            logger.error("发送MimeMessge时发生异常！", e);
+            log.error("发送MimeMessge时发生异常！", e);
         }
     }
 
@@ -80,7 +80,7 @@ public class MailServiceImpl implements MailService {
 
             mailSender.send(message);
         } catch (MessagingException e) {
-            logger.error("发送带附件的MimeMessge时发生异常！", e);
+            log.error("发送带附件的MimeMessge时发生异常！", e);
         }
     }
 
@@ -101,7 +101,7 @@ public class MailServiceImpl implements MailService {
             }
             mailSender.send(message);
         } catch (MessagingException e) {
-            logger.error("发送带静态文件的MimeMessge时发生异常！", e);
+            log.error("发送带静态文件的MimeMessge时发生异常！", e);
         }
     }
 
@@ -139,8 +139,8 @@ public class MailServiceImpl implements MailService {
             System.out.println("请求session中的数据：——————"+SessionUtils.getVerifyCode(request));
             return ResponseMap.sendMessage("验证码发送成功",stringBuilder);
         } catch (MessagingException e) {
-            logger.error("发送MimeMessge时发生异常！", e);
-            return ResponseMap.sendMessage("发送MimeMessge时发生异常！");
+            log.error("发送MimeMessge时发生异常！", e);
+            return ResponseMap.sendMessage(1000,"发送MimeMessge时发生异常！");
         }
     }
 }
