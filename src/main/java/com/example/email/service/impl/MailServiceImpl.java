@@ -1,6 +1,7 @@
 package com.example.email.service.impl;
 
 import com.example.email.service.MailService;
+import com.example.email.utils.ErrorMessage;
 import com.example.email.utils.ResponseMap;
 import com.example.email.utils.SessionUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -133,14 +134,13 @@ public class MailServiceImpl implements MailService {
             helper.setSubject("验证码");
             helper.setText(content, true);
             mailSender.send(message);
-            System.out.println("验证码准备向session中存储，saving in session");
+            log.info("The verification code will be stored in the session.");
             SessionUtils.setVerifyCode(request,stringBuilder);
-            System.out.println("验证码完成向session中存储，saved in session");
-            System.out.println("请求session中的数据：——————"+SessionUtils.getVerifyCode(request));
+            log.info("The verification code has been stored in the session.");
             return ResponseMap.sendMessage("验证码发送成功",stringBuilder);
         } catch (MessagingException e) {
-            log.error("发送MimeMessge时发生异常！", e);
-            return ResponseMap.sendMessage(1000,"发送MimeMessge时发生异常！");
+            log.error(ErrorMessage.EmailSendError.getValue(), e);
+            return ResponseMap.sendMessage(1000, ErrorMessage.EmailSendError.getValue());
         }
     }
 }

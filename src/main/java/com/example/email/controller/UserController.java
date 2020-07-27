@@ -3,8 +3,10 @@ package com.example.email.controller;
 
 import com.example.email.entity.User;
 import com.example.email.service.impl.UserServiceImpl;
+import com.example.email.utils.ErrorMessage;
 import com.example.email.utils.ResponseMap;
 import com.example.email.utils.SessionUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api")
+@Slf4j
 public class UserController {
 
     @Autowired(required = false)
@@ -32,20 +35,19 @@ public class UserController {
             String msg = userService.login(user);
             return ResponseMap.sendMessage(msg);
         } else {
-            return ResponseMap.sendMessage("验证码错误");
+            return ResponseMap.sendMessage(1001,ErrorMessage.VerifyCode.getValue());
         }
     }
 
     @RequestMapping(path="/register", method = RequestMethod.POST)
     @ResponseBody
     public Map<String,Object> register(HttpServletRequest request, @RequestBody User user){
-        System.out.println("注册参数:____"+user);
-        System.out.println("获取session中的验证码---Get VerifyCode from session:________"+SessionUtils.getVerifyCode(request));
+        log.info("The Verification code obtained from the session is "+ SessionUtils.getVerifyCode(request));
         if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
             String msg = userService.register(user);
             return ResponseMap.sendMessage(msg);
         } else {
-            return ResponseMap.sendMessage(1001,"验证码错误");
+            return ResponseMap.sendMessage(1001,ErrorMessage.VerifyCode.getValue());
         }
     }
 }
