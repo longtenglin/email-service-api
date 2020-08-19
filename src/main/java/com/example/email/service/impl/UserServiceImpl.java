@@ -5,8 +5,12 @@ import com.example.email.entity.User;
 import com.example.email.mapper.UserMapper;
 import com.example.email.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.email.utils.ErrorMessage;
+import com.example.email.utils.ResponseMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -23,23 +27,23 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
     private UserMapper userMapper;
 
     @Override
-    public String login(User user) {
+    public Map<String,Object> login(User user) {
         User userGet = userMapper.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()).eq("password",user.getPassword()));
         if( userGet == null){
-            return "用户名或密码错误";
+            return ResponseMap.sendMessage(1002,ErrorMessage.UserNameOrPwdError.getValue());
         } else {
-            return "登录成功";
+            return ResponseMap.sendMessage(0,"登录成功");
         }
     }
 
     @Override
-    public String register(User user) {
+    public Map<String,Object> register(User user) {
         User userGet = userMapper.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()));
         if( userGet == null){
             userMapper.insert(user);
-            return "注册成功";
+            return ResponseMap.sendMessage(0,"注册成功");
         } else {
-            return "注册失败，用户已存在";
+            return ResponseMap.sendMessage(1003,ErrorMessage.ExistUser.getValue());
         }
     }
 }

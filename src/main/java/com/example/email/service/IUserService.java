@@ -3,6 +3,8 @@ package com.example.email.service;
 import com.example.email.entity.User;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.Map;
+
 /**
  * <p>
  *  服务类
@@ -13,7 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface IUserService extends IService<User> {
 
-    String login(User user);
+    Map<String,Object> login(User user);
 
-    String register(User user);
+    Map<String,Object> register(User user);
 }

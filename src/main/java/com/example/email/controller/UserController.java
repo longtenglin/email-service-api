@@ -1,6 +1,5 @@
 package com.example.email.controller;
 
-
 import com.example.email.entity.User;
 import com.example.email.service.impl.UserServiceImpl;
 import com.example.email.utils.ErrorMessage;
@@ -32,8 +31,7 @@ public class UserController {
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public Map<String,Object> login(HttpServletRequest request, @RequestBody User user){
         if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
-            String msg = userService.login(user);
-            return ResponseMap.sendMessage(msg);
+            return userService.login(user);
         } else {
             return ResponseMap.sendMessage(1001,ErrorMessage.VerifyCode.getValue());
         }
@@ -43,9 +41,8 @@ public class UserController {
     @ResponseBody
     public Map<String,Object> register(HttpServletRequest request, @RequestBody User user){
         log.info("The Verification code obtained from the session is "+ SessionUtils.getVerifyCode(request));
-        if (user.getCode().equals(SessionUtils.getVerifyCode(request))){
-            String msg = userService.register(user);
-            return ResponseMap.sendMessage(msg);
+        if (user.getCode().equals(SessionUtils.getVerifyCode (request))){
+            return userService.register(user);
         } else {
             return ResponseMap.sendMessage(1001,ErrorMessage.VerifyCode.getValue());
         }

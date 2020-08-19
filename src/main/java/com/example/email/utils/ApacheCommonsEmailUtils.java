@@ -79,9 +79,7 @@ public class ApacheCommonsEmailUtils {
         // 通过session得到transport对象
         Transport ts = session.getTransport();
         // 连接邮件服务器：邮箱类型，帐号，POP3/SMTP协议授权码 163使用：smtp.163.com
-        //hpzcfionhlebbjdd
-        //wukvrwdtyarecagg
-        ts.connect("smtp.qq.com", "474845394@qq.com", "hpzcfionhlebbjdd");
+        ts.connect("smtp.qq.com", "发件方QQ号@qq.com", "授权码");
         // 创建邮件
         Message message = createSimpleMail(session);
         // 发送邮件
@@ -107,13 +105,13 @@ public class ApacheCommonsEmailUtils {
         // 创建邮件对象
         MimeMessage message = new MimeMessage(session);
         // 指明邮件的发件人
-        message.setFrom(new InternetAddress("474845394@qq.com"));
+        message.setFrom(new InternetAddress("发件方@qq.com"));
         // 指明邮件的收件人，现在发件人和收件人是一样的，那就是自己给自己发
-        message.setRecipient(Message.RecipientType.TO, new InternetAddress("474845394@qq.com"));
+        message.setRecipient(Message.RecipientType.TO, new InternetAddress("收件方@qq.com"));
         // 邮件的标题
         message.setSubject("JavaMail测试");
         // 邮件的文本内容
-        message.setContent("欢迎您注册【Mr_赵楠_网络科技】,账号注册验证码为(一分钟有效):"+stringBuilder+",请勿回复此邮箱", "text/html;charset=UTF-8");
+        message.setContent("欢迎您注册【Mr_Zhaon_网络科技】,账号注册验证码为(一分钟有效):"+stringBuilder+",请勿回复此邮箱", "text/html;charset=UTF-8");
 
         // 返回创建好的邮件对象
         return message;
