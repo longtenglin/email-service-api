@@ -5,6 +5,7 @@ import com.example.email.service.impl.UserServiceImpl;
 import com.example.email.utils.ErrorMessage;
 import com.example.email.utils.ResponseMap;
 import com.example.email.utils.SessionUtils;
+import com.example.email.utils.TokenUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,5 +47,22 @@ public class UserController {
         } else {
             return ResponseMap.sendMessage(1001,ErrorMessage.VerifyCode.getValue());
         }
+    }
+
+    @RequestMapping(path = "/token", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> getToken(){
+        return TokenUtils.buildJWT("123456a");
+    }
+
+    @RequestMapping(path = "/info", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> getInfo(){
+        return ResponseMap.sendMessage("数据请求成功");
+    }
+    @RequestMapping(path = "/testHttp", method = RequestMethod.POST)
+    @ResponseBody
+    public Map<String,Object> getTestHttp(){
+        return ResponseMap.sendMessage("数据请求成功","不知道为什么请求不到啊");
     }
 }

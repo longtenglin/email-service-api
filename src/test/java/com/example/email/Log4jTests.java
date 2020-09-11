@@ -35,14 +35,14 @@ public class Log4jTests {
 
     @Test
     public void testToken(){
-        Map<String,String> map = new HashMap<>();
-        map.put("username", "419405209@qq.com");
-        map.put("password","123456a");
-        map.put("code","784564");
-        System.out.println(map.toString());
-        String token = TokenUtils.buildJWT(map.toString());
-        System.out.println(token);
-        String loginJson = TokenUtils.verifyToken(token);
-        System.out.println(loginJson);
+//        Map<String,String> map = new HashMap<>();
+//        map.put("username", "419405209@qq.com");
+//        map.put("password","123456a");
+//        map.put("code","784564");
+//        System.out.println(map.toString());
+//        String token = TokenUtils.buildJWT(map.toString());
+//        System.out.println(token);
+//        String loginJson = TokenUtils.verifyToken(token);
+//        System.out.println(loginJson);
     }
 }

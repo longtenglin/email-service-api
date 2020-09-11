@@ -7,6 +7,7 @@ import com.example.email.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.email.utils.ErrorMessage;
 import com.example.email.utils.ResponseMap;
+import com.example.email.utils.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,12 +29,17 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IU
 
     @Override
     public Map<String,Object> login(User user) {
-        User userGet = userMapper.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()).eq("password",user.getPassword()));
-        if( userGet == null){
-            return ResponseMap.sendMessage(1002,ErrorMessage.UserNameOrPwdError.getValue());
-        } else {
-            return ResponseMap.sendMessage(0,"登录成功");
+        try{
+            User userGet = userMapper.selectOne(new QueryWrapper<User>().eq("username",user.getUsername()).eq("password",user.getPassword()));
+            if( userGet == null){
+                return ResponseMap.sendMessage(1002,ErrorMessage.UserNameOrPwdError.getValue());
+            } else {
+                return ResponseMap.sendMessage("登录成功", TokenUtils.buildJWT("123456a"));
+            }
+        } catch (Exception e){
+            e.printStackTrace();
         }
+        return ResponseMap.sendMessage(-1, "Unexpected Error");
     }
 
     @Override

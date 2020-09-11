@@ -4,7 +4,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     #url: jdbc:mysql://localhost:3306/test001?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
 
-    url: jdbc:mysql://localhost:3306/vuetest?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/test001?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai
     username: root
     #password: 123
     password: root
@@ -16,9 +16,11 @@ spring:
     # 编码格式
     default-encoding: utf-8
     # 用户名
-    username:
+    username: 474845394@qq.com
     # 授权码
-    password:
+    #  POP3/SMTP  hpzcfionhlebbjdd
+    #  IMAP/SMTP  wukvrwdtyarecagg
+    password: hpzcfionhlebbjdd
     # 其它参数
     properties:
       mail:

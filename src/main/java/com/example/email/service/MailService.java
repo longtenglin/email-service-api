@@ -48,5 +48,5 @@ public interface MailService {
      */
     void sendMimeMessge(String to, String subject, String content, Map<String, String> rscIdMap);
 
-    Map<String, Object> getMsg(HttpServletRequest request, java.lang.String mail);
+    Map<String, Object> getMsg(HttpServletRequest request, String mail);
 }

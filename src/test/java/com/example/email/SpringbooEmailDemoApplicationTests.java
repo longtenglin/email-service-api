@@ -15,12 +15,12 @@ import java.util.Map;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class SpringbooEmailDemoApplicationTests {
+public class SpringbooEmailDemoApplicationTests{
 
     @Autowired
     private MailService mailService;
 
-    private static final String TO = "对方QQ号@qq.com";
+    private static final String TO = "mr.nanzhao@gmail.com";
     private static final String SUBJECT = "主题 - 测试邮件";
     private static final String CONTENT = "Testing Testing Testing";
 
@@ -28,7 +28,7 @@ public class SpringbooEmailDemoApplicationTests {
      * 测试发送普通邮件
      */
     @Test
-    public void sendSimpleMailMessage() {
+    public void sendSimpleMailMessage(){
         mailService.sendSimpleMailMessge(TO, SUBJECT, CONTENT);
     }
 
