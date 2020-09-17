@@ -16,7 +16,7 @@ public class ApacheCommonsEmailUtils {
     // 发件人的邮箱-修改为自己的
     public static String emailAccount = "474845394@qq.com";
     // 发件人邮箱授权码-修改为自己的
-    public static String emailPassword = "hpzcfionhlebbjdd";
+    public static String emailPassword = "";
     // 发件人邮箱服务地址-修改为自己的
     public static String emailSMTPHost = "smtp.qq.com";
     //  收件人邮箱
@@ -81,7 +81,7 @@ public class ApacheCommonsEmailUtils {
         // 连接邮件服务器：邮箱类型，帐号，POP3/SMTP协议授权码 163使用：smtp.163.com
         //hpzcfionhlebbjdd
         //wukvrwdtyarecagg
-        ts.connect("smtp.qq.com", "474845394@qq.com", "hpzcfionhlebbjdd");
+        ts.connect("smtp.qq.com", "474845394@qq.com", "");
         // 创建邮件
         Message message = createSimpleMail(session);
         // 发送邮件

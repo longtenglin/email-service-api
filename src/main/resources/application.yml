@@ -18,9 +18,8 @@ spring:
     # 用户名
     username: 474845394@qq.com
     # 授权码
-    #  POP3/SMTP  hpzcfionhlebbjdd
-    #  IMAP/SMTP  wukvrwdtyarecagg
-    password: hpzcfionhlebbjdd
+    #  POP3/SMTP
+    password:
     # 其它参数
     properties:
       mail:

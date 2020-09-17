@@ -20,7 +20,7 @@ public class SpringbooEmailDemoApplicationTests{
     @Autowired
     private MailService mailService;
 
-    private static final String TO = "mr.nanzhao@gmail.com";
+    private static final String TO = "nanzhaolove@gmail.com";
     private static final String SUBJECT = "主题 - 测试邮件";
     private static final String CONTENT = "Testing Testing Testing";
 
